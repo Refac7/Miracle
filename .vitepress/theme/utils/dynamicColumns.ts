@@ -4,6 +4,7 @@ import { globalConfig } from "#config";
 export const columnCount = ref(3);
 
 export const updateColumns = () => {
+  if (typeof window === "undefined") return;
   const width = window.innerWidth;
   if (width < globalConfig.waterfall.oneColumnMax) {
     columnCount.value = 1;
