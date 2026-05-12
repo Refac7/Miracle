@@ -5,9 +5,9 @@ pageClass: indexPage
 footer: false
 ---
 
-<FirstPage />
-
 <ClientOnly>
+    <FirstPage />
+
     <div v-if="globalConfig.homePage.modules.pictures">
         <h2><Icon :icon="globalConfig.icon.photos" /> {{ globalConfig.lang.photos }}</h2>
             <Pictures />
@@ -46,7 +46,6 @@ footer: false
 
 <script setup lang="ts">
     import { globalConfig } from "#config";
-    console.log(globalConfig.photos)
 </script>
 
 <style>
