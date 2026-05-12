@@ -24,8 +24,12 @@ const props = defineProps({
 });
 
 // 获取 URL 中的 category 参数
-const urlParams = new URLSearchParams(window.location.search);
-const selectedCategory = ref(urlParams.get("category"));
+const getInitialCategory = () => {
+  if (typeof window === "undefined") return null;
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("category");
+};
+const selectedCategory = ref(getInitialCategory());
 
 // 创建一个响应式变量来存储过滤后的文章
 const articles = ref(posts);

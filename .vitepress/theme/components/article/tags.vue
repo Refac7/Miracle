@@ -23,8 +23,12 @@ const props = defineProps({
 });
 
 // 获取 URL 中的 tag 参数
-const urlParams = new URLSearchParams(window.location.search);
-const selectedTag = ref(urlParams.get("tag"));
+const getInitialTag = () => {
+  if (typeof window === "undefined") return null;
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("tag");
+};
+const selectedTag = ref(getInitialTag());
 
 // 创建响应式文章列表
 const articles = ref(posts);
