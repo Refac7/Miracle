@@ -12,7 +12,13 @@ function shuffle<T>(array: T[]): T[] {
     .map(({ item }) => item);
 }
 
-const allRandomPhotos = shuffle(globalConfig.photos || []);
+let allRandomPhotos: any[] = [];
+
+onMounted(() => {
+  allRandomPhotos = shuffle(globalConfig.photos || []);
+  updateColumns();
+  window.addEventListener("resize", updateColumns);
+});
 
 // 2. 核心：根据当前列数，只取前 N 张，确保只排满“一行”
 const photoGrid = computed(() => {
@@ -30,11 +36,6 @@ const photoGrid = computed(() => {
   );
 
   return grid[0]?.columns || [];
-});
-
-onMounted(() => {
-  updateColumns();
-  window.addEventListener("resize", updateColumns);
 });
 
 onUnmounted(() => {

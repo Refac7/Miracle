@@ -7,16 +7,20 @@ footer: false
 
 <FirstPage />
 
-<div v-if="globalConfig.homePage.modules.pictures">
-    <h2><Icon :icon="globalConfig.icon.photos" /> {{ globalConfig.lang.photos }}</h2>
-        <Pictures />
-</div>
+<ClientOnly>
+    <div v-if="globalConfig.homePage.modules.pictures">
+        <h2><Icon :icon="globalConfig.icon.photos" /> {{ globalConfig.lang.photos }}</h2>
+            <Pictures />
+    </div>
+</ClientOnly>
 
 <div v-if="globalConfig.homePage.modules.recentPosts">
     <h2><Icon :icon="globalConfig.icon.recentPosts" /> {{ globalConfig.lang.recentPosts }}</h2>
-    <div v-if="globalConfig.homePage.modules.lastMoment">
-        <LastMoment />
-    </div>
+    <ClientOnly>
+        <div v-if="globalConfig.homePage.modules.lastMoment">
+            <LastMoment />
+        </div>
+    </ClientOnly>
     <RecentPosts />
 </div>
 

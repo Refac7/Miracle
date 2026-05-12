@@ -27,8 +27,11 @@ function stopHueCycle() {
   hueTimer = null;
 }
 
-if (r.enabled == true) {
-  startHueCycle();
-} else {
-  stopHueCycle();
+// 仅在浏览器环境中执行
+if (typeof window !== "undefined" && typeof document !== "undefined") {
+  if (r.enabled == true) {
+    startHueCycle();
+  } else {
+    stopHueCycle();
+  }
 }
