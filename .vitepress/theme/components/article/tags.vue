@@ -105,6 +105,7 @@ const tagCounts = computed(() => {
 // 点击标签更新 URL
 const handleTagClick = (tag: string) => {
   selectedTag.value = tag;
+  if (typeof window === "undefined") return;
   const url = new URL(window.location.href);
   url.searchParams.set("tag", tag);
   window.history.pushState({}, "", url);

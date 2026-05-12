@@ -108,6 +108,7 @@ const categoryCounts = computed(() => {
 // 点击某个类别时更新 URL 中的 category 参数
 const handleCategoryClick = (category: string) => {
   selectedCategory.value = category;
+  if (typeof window === "undefined") return;
   const url = new URL(window.location.href);
   url.searchParams.set("category", category); // 更新 URL
   window.history.pushState({}, "", url); // 更改 URL并保留浏览历史
